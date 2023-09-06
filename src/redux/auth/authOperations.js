@@ -21,7 +21,6 @@ export const registerDB = createAsyncThunk(
     try {
       const createUser = await createUserWithEmailAndPassword(
         auth,
-        name,
         email,
         password
       );
@@ -30,8 +29,6 @@ export const registerDB = createAsyncThunk(
       if (user) {
         await updateProfile(user, { displayName: name });
       }
-      console.log(createUser);
-      console.log(user);
       return createUser;
     } catch (error) {
       throw error;
@@ -54,7 +51,6 @@ export const registerDB = createAsyncThunk(
 //     }
 //   }
 // );
-
 
 export const loginDB = createAsyncThunk(
   "auth/login",

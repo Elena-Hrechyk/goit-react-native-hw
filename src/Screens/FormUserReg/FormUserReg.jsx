@@ -22,10 +22,18 @@ const FormUserReg = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(true);
-  const [colorName, setColorName] = useState("#E8E8E8");
+  const [focusedField, setFocusedField] = useState(null);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const onFocusInput = (fieldName) => {
+    setFocusedField(fieldName);
+  };
+
+  const onBlurInput = () => {
+    setFocusedField(null);
+  };
 
   const onRegistration = () => {
     navigation.navigate("Publications");
@@ -34,9 +42,9 @@ const FormUserReg = () => {
       email,
       password,
     };
-    console.log(newUser);
     dispatch(registerDB(newUser));
   };
+
   const toglleShowPass = () => setShowPass((showPass) => !showPass);
 
   return (
@@ -69,15 +77,13 @@ const FormUserReg = () => {
                 value={name}
                 placeholder="Username"
                 autoComplete="username"
-                style={{ ...styles.input, borderColor: colorName }}
+                style={[
+                  styles.input,
+                  focusedField === "username" && styles.focusedInput,
+                ]}
                 onChangeText={setName}
-                onFocus={(evt) => {
-                  setColorName("#FF6C00");
-                  console.log(evt);
-                }}
-                onBlur={() => {
-                  setColorName("#E8E8E8");
-                }}
+                onFocus={() => onFocusInput("username")}
+                onBlur={onBlurInput}
               />
             </View>
             <View>
@@ -85,12 +91,14 @@ const FormUserReg = () => {
                 value={email}
                 placeholder="example@mail.com"
                 autoComplete="email"
-                style={styles.input}
+                style={[
+                  styles.input,
+                  focusedField === "email" && styles.focusedInput,
+                ]}
                 onChangeText={setEmail}
                 keyboardType="email-address"
-                onFocus={() => {
-                  setColorName("#FF6C00");
-                }}
+                onFocus={() => onFocusInput("email")}
+                onBlur={onBlurInput}
               />
             </View>
 
@@ -100,11 +108,13 @@ const FormUserReg = () => {
                 secureTextEntry={showPass}
                 placeholder="Input your password"
                 autoComplete="password"
-                style={styles.inputLastChild}
+                style={[
+                  styles.inputLastChild,
+                  focusedField === "password" && styles.focusedInput,
+                ]}
                 onChangeText={setPassword}
-                onFocus={() => {
-                  setColorName("#FF6C00");
-                }}
+                onFocus={() => onFocusInput("password")}
+                onBlur={onBlurInput}
               />
               <Pressable style={styles.btnShowPass} onPress={toglleShowPass}>
                 <Text style={styles.btnShowPassText}>

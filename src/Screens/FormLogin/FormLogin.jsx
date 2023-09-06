@@ -18,8 +18,17 @@ const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(true);
+  const [focusedField, setFocusedField] = useState(null);
   const navigation = useNavigation();
   // const dispatch = useDispatch();
+
+  const onFocusInput = (fieldName) => {
+    setFocusedField(fieldName);
+  };
+
+  const onBlurInput = () => {
+    setFocusedField(null);
+  };
 
   const onLogin = () => {
     navigation.navigate("Publications");
@@ -50,8 +59,13 @@ const FormLogin = () => {
                 value={email}
                 placeholder="example@mail.com"
                 autoComplete="email"
-                style={styles.input}
+                style={[
+                  styles.input,
+                  focusedField === "email" && styles.focusedInput,
+                ]}
                 onChangeText={setEmail}
+                onFocus={() => onFocusInput("email")}
+                onBlur={onBlurInput}
               />
             </View>
 
@@ -61,8 +75,13 @@ const FormLogin = () => {
                 secureTextEntry={showPass}
                 placeholder="Input your password"
                 autoComplete="password"
-                style={styles.inputLastChild}
+                style={[
+                  styles.inputLastChild,
+                  focusedField === "password" && styles.focusedInput,
+                ]}
                 onChangeText={setPassword}
+                onFocus={() => onFocusInput("password")}
+                onBlur={onBlurInput}
               />
               <Pressable style={styles.btnShowPass} onPress={toglleShowPass}>
                 <Text style={styles.btnShowPassText}>

@@ -1,8 +1,18 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity, Button } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Button,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import MapView, { Marker } from "react-native-maps";
 import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./AddPublication-styled";
 
@@ -91,9 +101,9 @@ function AddPost() {
           onChangeText={setLocation}
         />
       </View>
-      <View style={styles.btnAddPost}>
-        <Button title="Опублікувати" disabled={onPublish} />
-      </View>
+      <Pressable>
+        <Text style={styles.btnAddPost}>Опублікувати</Text>
+      </Pressable>
     </View>
   );
 }

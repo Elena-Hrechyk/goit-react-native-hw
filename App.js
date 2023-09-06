@@ -32,7 +32,11 @@ export default function App() {
               component={FormUserReg}
               options={{ headerStyle: { height: 0 } }}
             />
-            <MainStack.Screen name="Login" component={FormLogin} />
+            <MainStack.Screen
+              name="Login"
+              component={FormLogin}
+              options={{ headerStyle: { height: 0 } }}
+            />
             <MainStack.Screen
               name="Публікації"
               component={Publications}
