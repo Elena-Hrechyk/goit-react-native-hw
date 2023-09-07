@@ -89,7 +89,6 @@ const FormLogin = () => {
                 </Text>
               </Pressable>
             </View>
-            <TouchableOpacity></TouchableOpacity>
 
             <TouchableOpacity style={styles.buttonLogin} onPress={onLogin}>
               <Text style={styles.buttonLoginText}>Увійти</Text>

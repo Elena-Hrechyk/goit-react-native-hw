@@ -35,7 +35,7 @@ export default function App() {
             <MainStack.Screen
               name="Login"
               component={FormLogin}
-              options={{ headerStyle: { height: 0 } }}
+              options={{ headerShown: false }}
             />
             <MainStack.Screen
               name="Публікації"
