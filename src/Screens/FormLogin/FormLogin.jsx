@@ -31,7 +31,7 @@ const FormLogin = () => {
   };
 
   const onLogin = () => {
-    navigation.navigate("Publications");
+    navigation.navigate("Home");
     const loginUser = {
       email,
       password,
@@ -91,7 +91,9 @@ const FormLogin = () => {
             </View>
 
             <TouchableOpacity style={styles.buttonLogin} onPress={onLogin}>
-              <Text style={styles.buttonLoginText}>Увійти</Text>
+              <Text style={styles.buttonLoginText} onPress={onLogin}>
+                Увійти
+              </Text>
             </TouchableOpacity>
 
             <Pressable>

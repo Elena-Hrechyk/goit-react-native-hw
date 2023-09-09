@@ -15,6 +15,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import registerDB from "../../redux/auth/authOperations";
 import PlusCircle from "../../img/svg/plus-circle";
+import AddIcon from "../../img/icons/add";
 import styles from "./FormUserReg-styled";
 
 const FormUserReg = () => {
@@ -36,7 +37,7 @@ const FormUserReg = () => {
   };
 
   const onRegistration = () => {
-    navigation.navigate("Publications");
+    navigation.navigate("Home");
     const newUser = {
       name,
       email,
@@ -64,7 +65,9 @@ const FormUserReg = () => {
                 source={require("../../img/default-avatar.png")}
                 style={styles.avatarImg}
               />
-              <PlusCircle />
+              {/* <Pressable style={styles.iconAddPhoto}>
+                <AddIcon />
+              </Pressable> */}
               <Image
                 source={require("../../img/icons/add-photo.png")}
                 style={styles.iconAddPhoto}

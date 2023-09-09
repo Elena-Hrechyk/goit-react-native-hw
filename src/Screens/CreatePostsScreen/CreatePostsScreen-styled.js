@@ -9,12 +9,25 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  image: {
+  createImage: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     height: 238,
     width: 343,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: "#E8E8E8",
-    marginBottom: 8,
+    borderRadius: 8,
+  },
+  cameraIcon: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 60,
+    width: 60,
+    borderRadius: 100,
+    backgroundColor: "#fff",
   },
   textUnderImg: {
     color: "#BDBDBD",
@@ -30,7 +43,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#E8E8E8",
-
     fontSize: 16,
   },
   boxLocation: {
@@ -49,7 +61,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#E8E8E8",
-    backgroundColor: "transporant",
+    // backgroundColor: "transporant",
     fontSize: 16,
   },
   btnAddPost: {
@@ -57,7 +69,7 @@ export const styles = StyleSheet.create({
     width: 343,
     display: "flex",
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: 120,
     paddingVertical: 16,
     paddingHorizontal: 32,
     color: "#fff",
@@ -66,5 +78,14 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Roboto-Regular",
     fontSize: 16,
+  },
+  delPost: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 70,
+    height: 40,
+    borderRadius: 100,
+    backgroundColor: "#F6F6F6",
   },
 });

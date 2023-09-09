@@ -3,26 +3,26 @@ import { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  Image,
   TextInput,
   TouchableOpacity,
-  Button,
-  Dimensions,
   Pressable,
 } from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import MapView, { Marker } from "react-native-maps";
 import { AntDesign } from "@expo/vector-icons";
-import { styles } from "./AddPublication-styled";
+import { styles } from "./CreatePostsScreen-styled";
+import TrashIcon from "../../img/icons/trash";
+import CameraIcon from "../../img/icons/camera";
 
-function AddPost() {
+function CreatePostsScreen() {
   const [namePost, setNamePost] = useState("");
   const [location, setLocation] = useState("");
   const [onPublish, setOnPublish] = useState(false);
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [btnDdisabled, setBtnDdisabled] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -44,7 +44,7 @@ function AddPost() {
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={setCameraRef}>
         <View style={styles.photoView}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.flipContainer}
             onPress={() => {
               setType(
@@ -58,7 +58,7 @@ function AddPost() {
               {" "}
               Flip{" "}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.button}
             onPress={async () => {
@@ -74,8 +74,11 @@ function AddPost() {
           </TouchableOpacity>
         </View>
       </Camera>
-      {/* <View style={styles.boxImage}></View> */}
-      <Image style={styles.image} />
+      <Pressable style={styles.createImage}>
+        <View style={styles.cameraIcon}>
+          <CameraIcon />
+        </View>
+      </Pressable>
       <Text style={styles.textUnderImg}>Завантажте фото</Text>
       <View>
         <TextInput
@@ -104,8 +107,17 @@ function AddPost() {
       <Pressable>
         <Text style={styles.btnAddPost}>Опублікувати</Text>
       </Pressable>
+      <Pressable
+        style={
+          btnDdisabled
+            ? styles.delPost
+            : { ...styles.delPost, backgroundColor: "#FF6C00" }
+        }
+      >
+        <TrashIcon stroke={btnDdisabled ? "#bdbdbd" : "#fff"} />
+      </Pressable>
     </View>
   );
 }
 
-export default AddPost;
+export default CreatePostsScreen;

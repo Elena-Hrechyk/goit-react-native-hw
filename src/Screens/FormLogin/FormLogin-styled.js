@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 15,
     right: 16,
-    backgroundColor: "transporant",
   },
   btnShowPassText: {
     color: "#1B4371",

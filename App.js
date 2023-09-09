@@ -7,7 +7,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/redux/store";
 import FormUserReg from "./src/Screens/FormUserReg/FormUserReg";
 import FormLogin from "./src/Screens/FormLogin/FormLogin";
-import Publications from "./src/Screens/Publications/Publications";
+// import Home from "./src/Screens/Home/Home";
+import HomeScreen from "./src/Screens/Home/HomeScreen";
+import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
 
 const MainStack = createStackNavigator();
 
@@ -26,7 +28,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <MainStack.Navigator initialRouteName="Registration">
+          <MainStack.Navigator initialRouteName="Публікації">
             <MainStack.Screen
               name="Registration"
               component={FormUserReg}
@@ -39,8 +41,13 @@ export default function App() {
             />
             <MainStack.Screen
               name="Публікації"
-              component={Publications}
+              component={HomeScreen}
               options={{ title: null, headerShown: false, headerLeft: null }}
+            />
+            <MainStack.Screen
+              name="Створити публікацію"
+              component={CreatePostsScreen}
+              options={{ headerShown: false }}
             />
           </MainStack.Navigator>
         </NavigationContainer>
@@ -48,12 +55,3 @@ export default function App() {
     </Provider>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
