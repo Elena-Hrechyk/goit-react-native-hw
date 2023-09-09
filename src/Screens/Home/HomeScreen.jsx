@@ -1,10 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign, SimpleLineIcons, Feather } from "@expo/vector-icons";
-import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
-import Profile from "../Profile/Profile";
 import styles from "./Home-styled";
 import { View, Image, Text, Pressable } from "react-native";
 import LogoutIcon from "../../img/icons/logout";
@@ -14,9 +10,11 @@ import UserIcon from "../../img/icons/user";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const onCreatePostScreen = () => {
+
+  const toCreatePostScreen = () => {
     navigation.navigate("Створити публікацію");
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -41,7 +39,7 @@ const HomeScreen = () => {
           <GridIcon />
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate("Створити публікацію")}
+          onPress={toCreatePostScreen}
           style={{ ...styles.btnBottomTabs, backgroundColor: "#FF6C00" }}
         >
           <AddIcon style={{ color: "#fff" }} />
