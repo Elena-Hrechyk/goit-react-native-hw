@@ -1,6 +1,6 @@
 import { Circle, Path, Svg } from "react-native-svg";
 
-export default function SendIcon({ stroke }) {
+export default function SendIcon({ fill }) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"

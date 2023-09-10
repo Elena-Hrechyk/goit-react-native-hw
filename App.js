@@ -8,7 +8,7 @@ import { store, persistor } from "./src/redux/store";
 import FormUserReg from "./src/Screens/FormUserReg/FormUserReg";
 import FormLogin from "./src/Screens/FormLogin/FormLogin";
 // import Home from "./src/Screens/Home/Home";
-import HomeScreen from "./src/Screens/Home/HomeScreen";
+import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
 import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
 
 const MainStack = createStackNavigator();

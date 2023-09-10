@@ -1,6 +1,6 @@
 import { Path, Svg } from "react-native-svg";
 
-export default function ThumbsUpIcon({ stroke }) {
+export default function ThumbsUpIcon({ fill }) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
