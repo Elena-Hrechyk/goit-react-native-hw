@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import styles from "./PostsScreen-styled";
+
 import { View, Image, Text, Pressable, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styles from "./PostsScreen-styled";
 import MappinIcon from "../../img/icons/mappin";
 import MessageIcon from "../../img/icons/message";
 
 const PostsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.userInfo}>
@@ -26,7 +30,10 @@ const PostsScreen = () => {
           />
           <Text style={styles.postName}>Ліс</Text>
           <View style={styles.postInfo}>
-            <Pressable style={styles.postInfoLeftSide}>
+            <Pressable
+              style={styles.postInfoLeftSide}
+              onPress={() => navigation.navigate("Comments")}
+            >
               <MessageIcon />
               <Text style={styles.messageCount}>0</Text>
             </Pressable>

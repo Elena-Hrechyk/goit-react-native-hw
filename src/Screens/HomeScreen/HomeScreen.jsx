@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import PostsScreen from "../PostsScreen/PostsScreen";
 import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
 import Profile from "../ProfileScreen/ProfileScreen";
@@ -9,10 +10,13 @@ import GridIcon from "../../img/icons/grid";
 import AddIcon from "../../img/icons/add";
 import UserIcon from "../../img/icons/user";
 import LogoutIcon from "../../img/icons/logout";
+import ArrowLeftIcon from "../../img/icons/arrowLeft";
 
 const Tabs = createBottomTabNavigator();
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -82,6 +86,14 @@ const HomeScreen = () => {
           tabBarShowLabel: false,
           tabBarStyle: {
             display: "none",
+          },
+          headerLeft: () => (
+            <Pressable onPress={() => navigation.navigate("Posts")}>
+              <ArrowLeftIcon />
+            </Pressable>
+          ),
+          headerLeftContainerStyle: {
+            left: 16,
           },
         }}
       />

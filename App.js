@@ -5,11 +5,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/redux/store";
+import { Pressable } from "react-native";
 import FormUserReg from "./src/Screens/FormUserReg/FormUserReg";
 import FormLogin from "./src/Screens/FormLogin/FormLogin";
-// import Home from "./src/Screens/Home/Home";
 import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
-import CreatePostsScreen from "./src/Screens/CreatePostsScreen/CreatePostsScreen";
+import CommentsScreen from "./src/Screens/CommentsScreen/CommentsScreen";
+import MapScreen from "./src/Screens/MapScreen/MapScreen";
+import ArrowLeftIcon from "./src/img/icons/arrowLeft";
 
 const MainStack = createStackNavigator();
 
@@ -28,7 +30,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <MainStack.Navigator initialRouteName="Публікації">
+          <MainStack.Navigator initialRouteName="HomeScreen">
             <MainStack.Screen
               name="Registration"
               component={FormUserReg}
@@ -40,14 +42,36 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <MainStack.Screen
-              name="Публікації"
+              name="HomeScreen"
               component={HomeScreen}
-              options={{ title: null, headerShown: false, headerLeft: null }}
+              options={{
+                title: "Публікації",
+                headerShown: false,
+                headerLeft: null,
+              }}
             />
             <MainStack.Screen
-              name="Створити публікацію"
-              component={CreatePostsScreen}
-              options={{ headerShown: false }}
+              name="Comments"
+              component={CommentsScreen}
+              options={{ title: "Коментарі", headerTitleAlign: "center" }}
+            />
+            <MainStack.Screen
+              name="Map"
+              component={MapScreen}
+              options={({ navigation }) => ({
+                title: "Мапа",
+                headerTitleAlign: "center",
+                headerLeft: () => (
+                  <Pressable
+                  // onPress={() => navigation.navigate("HomeScreen")}
+                  >
+                    <ArrowLeftIcon />
+                  </Pressable>
+                ),
+                headerLeftContainerStyle: {
+                  left: 16,
+                },
+              })}
             />
           </MainStack.Navigator>
         </NavigationContainer>
