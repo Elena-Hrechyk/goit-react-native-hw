@@ -1,5 +1,6 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { loginDB } from "../../redux/auth/authOperations";
 import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
@@ -20,7 +21,7 @@ const FormLogin = () => {
   const [showPass, setShowPass] = useState(true);
   const [focusedField, setFocusedField] = useState(null);
   const navigation = useNavigation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onFocusInput = (fieldName) => {
     setFocusedField(fieldName);
@@ -31,11 +32,14 @@ const FormLogin = () => {
   };
 
   const onLogin = () => {
-    navigation.navigate("Home");
     const loginUser = {
-      email,
-      password,
+      email: email.toLowerCase().trim(),
+      password: password.trim(),
     };
+    navigation.navigate("HomeScreen");
+    dispatch(loginDB(loginUser));
+    setEmail("");
+    setPassword("");
   };
 
   const toglleShowPass = () => setShowPass((showPass) => !showPass);
@@ -91,9 +95,7 @@ const FormLogin = () => {
             </View>
 
             <TouchableOpacity style={styles.buttonLogin} onPress={onLogin}>
-              <Text style={styles.buttonLoginText} onPress={onLogin}>
-                Увійти
-              </Text>
+              <Text style={styles.buttonLoginText}>Увійти</Text>
             </TouchableOpacity>
 
             <Pressable>

@@ -23,7 +23,7 @@ const CreatePostsScreen = () => {
   const [newPhotoUri, setNewPhotoUri] = useState("");
   const [btnDdisabled, setBtnDdisabled] = useState(true);
   // camera states
-  const [hasPermission, setHasPermission] = useState("null");
+  const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 

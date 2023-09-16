@@ -1,7 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { logoutDB } from "../../redux/auth/authOperations";
 import PostsScreen from "../PostsScreen/PostsScreen";
 import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
 import Profile from "../ProfileScreen/ProfileScreen";
@@ -15,6 +17,7 @@ import ArrowLeftIcon from "../../img/icons/arrowLeft";
 const Tabs = createBottomTabNavigator();
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   return (
@@ -60,9 +63,10 @@ const HomeScreen = () => {
           tabBarShowLabel: false,
           headerRight: () => (
             <Pressable
-            // onPress={() => {
-            //   dispatch(logOut());
-            // }}
+              onPress={() => {
+                dispatch(logoutDB());
+                navigation.navigate("Login");
+              }}
             >
               <LogoutIcon />
             </Pressable>

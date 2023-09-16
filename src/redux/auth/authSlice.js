@@ -1,46 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { fetchCurrentUser, logIn, logOut, register } from "./operations-auth";
-import { registerDB } from "./authOperations";
+import { registerDB, loginDB, logoutDB } from "./authOperations";
 
 const initialState = {
-  user: { name: null, email: null, uid: null },
+  user: { name: null, email: null },
   token: null,
   isLogin: false,
   isUpdating: false,
+  isGoingToLogin: false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: (builder) =>
-    builder.addCase(registerDB.fulfilled, (state, action) => {
-      state.user.name = action.payload.user.displayName;
-      state.user.email = action.payload.user.email;
-      state.token = action.payload.user.accessToken;
-      state.user.uid = action.payload.user.uid;
-      state.isLogin = true;
-    }),
-  // [logIn.fulfilled](state, action) {
-  //   state.user = action.payload.user;
-  //   state.token = action.payload.token;
-  //   state.isLogin = true;
-  // },
-  // [logOut.fulfilled](state, action) {
-  //   state.user = { username: null, email: null };
-  //   state.token = null;
-  //   state.isLogin = false;
-  // },
-  // [fetchCurrentUser.pending](state) {
-  //   state.isUpdating = true;
-  // },
-  // [fetchCurrentUser.fulfilled](state, action) {
-  //   state.user = action.payload;
-  //   state.isLogin = true;
-  //   state.isUpdating = false;
-  // },
-  // [fetchCurrentUser.rejected](state) {
-  //   state.isUpdating = false;
-  // },
+    builder
+      .addCase(registerDB.pending, (state, _) => {
+        state.isGoingToLogin = true;
+      })
+      .addCase(registerDB.fulfilled, (state, action) => {
+        state.user.name = action.payload.user.displayName;
+        state.user.email = action.payload.user.email;
+        state.token = action.payload.user.accessToken;
+        state.user.uid = action.payload.user.uid;
+        state.isLogin = true;
+        state.isGoingToLogin = false;
+      })
+      .addCase(
+        registerDB.rejected,
+        (state, _) => (state.isGoingToLogin = false)
+      )
+      .addCase(loginDB.pending, (state, _) => {
+        state.isGoingToLogin = true;
+      })
+      .addCase(loginDB.fulfilled, (state, action) => {
+        state.user.name = action.payload.displayName;
+        state.user.email = action.payload.email;
+        state.token = action.payload.accessToken;
+        state.isLogin = true;
+        state.isGoingToLogin = false;
+      })
+      .addCase(loginDB.rejected, (state, _) => (state.isGoingToLogin = false))
+      .addCase(logoutDB.fulfilled, (state) => {
+        state.user.name = null;
+        state.user.email = null;
+        state.token = null;
+        state.isLogin = false;
+      }),
 });
 
 export const authReducer = authSlice.reducer;

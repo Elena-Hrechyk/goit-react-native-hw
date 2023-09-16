@@ -13,9 +13,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import registerDB from "../../redux/auth/authOperations";
-import PlusCircle from "../../img/svg/plus-circle";
-import AddIcon from "../../img/icons/add";
+import { registerDB } from "../../redux/auth/authOperations";
 import styles from "./FormUserReg-styled";
 
 const FormUserReg = () => {
@@ -37,13 +35,19 @@ const FormUserReg = () => {
   };
 
   const onRegistration = () => {
-    navigation.navigate("Home");
     const newUser = {
-      name,
-      email,
-      password,
+      name: name.trim(),
+      email: email.toLowerCase().trim(),
+      password: password.trim(),
     };
+
     dispatch(registerDB(newUser));
+
+    navigation.navigate("HomeScreen");
+
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   const toglleShowPass = () => setShowPass((showPass) => !showPass);
@@ -124,12 +128,9 @@ const FormUserReg = () => {
                   {showPass ? "Показати" : "Приховати"}
                 </Text>
               </Pressable>
-              <TouchableOpacity
-                style={styles.buttonReg}
-                onPress={onRegistration}
-              >
+              <Pressable style={styles.buttonReg} onPress={onRegistration}>
                 <Text style={styles.buttonRegText}>Зареєстуватися</Text>
-              </TouchableOpacity>
+              </Pressable>
             </View>
 
             <Pressable>

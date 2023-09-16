@@ -30,7 +30,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <MainStack.Navigator initialRouteName="HomeScreen">
+          <MainStack.Navigator initialRouteName="Registration">
             <MainStack.Screen
               name="Registration"
               component={FormUserReg}

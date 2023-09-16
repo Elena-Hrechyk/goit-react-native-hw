@@ -5,3 +5,5 @@ export const selectIsLogin = (state) => state.auth.isLogin;
 export const selectEmail = (state) => state.auth.user.email;
 
 export const selectIsUpdating = (state) => state.auth.isUpdating;
+
+export const selectIsGoingToLogin = (state) => state.auth.isGoingToLogin;

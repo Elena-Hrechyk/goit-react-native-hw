@@ -8,14 +8,14 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "zb7ubADnHSXvUloGs0JUlZizEJt8DYyHW3DAMkSQ",
-  authDomain: "my-rn-app-25cd8.firebaseapp.com",
-  databaseURL: "https://my-rn-app-25cd8-default-rtdb.firebaseio.com/",
-  projectId: "my-rn-app-25cd8",
-  storageBucket: "my-rn-app-25cd8.appspot.com",
-  messagingSenderId: "21800304938",
-  appId: "app-id",
-  measurementId: "G-measurement-id",
+  apiKey: "AIzaSyAMz1NU4T2Ttgc_DtULc2NWyeEsR78vpbc",
+  authDomain: "my-rn-project-e561b.firebaseapp.com",
+  databaseURL: "https://my-rn-project-e561b-default-rtdb.firebaseio.com/",
+  projectId: "my-rn-project-e561b",
+  storageBucket: "my-rn-project-e561b.appspot.com",
+  messagingSenderId: "128474385014",
+  appId: "1:128474385014:android:045e04118475e7aff5ed57",
+  measurementId: "406895076",
 };
 
 const app = initializeApp(firebaseConfig);

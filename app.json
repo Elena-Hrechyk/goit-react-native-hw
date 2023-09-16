@@ -20,7 +20,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AAAAHemrinY:APA91bF2goEqruRt_CA_gvGcmAiZYwmxpWVMRrf4hE9B3eyjHyftesvUKrJamnFz1_12FQsyES646eJzqWRBvJb6Uy4DP8R6_LPJbARj9htXMlCrMYNfbPotYubqHbBrJf_Ti_US10tK"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

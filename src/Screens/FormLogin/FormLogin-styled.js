@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   },
   focusedInput: {
     borderColor: "#FF6C00", // Колір рамки при фокусі
+    backgroundColor: "#fff",
   },
   passInputContainer: {
     position: "relative",

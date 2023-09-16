@@ -3,17 +3,11 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signOut,
 } from "firebase/auth";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { auth, db } from "../../../config";
+import { auth } from "../../../config";
 
 export const registerDB = createAsyncThunk(
   "auth/register",
@@ -25,32 +19,16 @@ export const registerDB = createAsyncThunk(
         password
       );
       const user = auth.currentUser;
-
       if (user) {
         await updateProfile(user, { displayName: name });
       }
+
       return createUser;
     } catch (error) {
       throw error;
     }
   }
 );
-
-// export const registerDB = createAsyncThunk(
-//   "auth/register",
-//   async ({ email, password, login }) => {
-//     try {
-//       const resp = await createUserWithEmailAndPassword(auth, email, password);
-//       const user = auth.currentUser;
-//       if (user) {
-//         await updateProfile(user, { displayName: login });
-//       }
-//       return resp;
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
-// );
 
 export const loginDB = createAsyncThunk(
   "auth/login",
@@ -61,9 +39,24 @@ export const loginDB = createAsyncThunk(
         email,
         password
       );
+      await onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log(user);
+        }
+      });
+
       return credentials.user;
     } catch (error) {
       throw error;
     }
   }
 );
+
+export const logoutDB = createAsyncThunk("auth/logout", async () => {
+  try {
+    const data = await signOut(auth);
+    return data;
+  } catch (err) {
+    throw err;
+  }
+});
